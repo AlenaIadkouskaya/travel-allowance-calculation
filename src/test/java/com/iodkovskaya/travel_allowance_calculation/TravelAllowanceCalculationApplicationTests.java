@@ -1,4 +1,4 @@
-package com.iodkovskaya.travel_allowance_calculation;
+package pl.iodkovskaya.travel_allowance_calculation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

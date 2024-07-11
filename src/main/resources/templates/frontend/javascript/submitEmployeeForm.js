@@ -8,7 +8,7 @@ async function submitForm(event) {
     const jsonData = JSON.stringify(Object.fromEntries(formData.entries()));
 
     try {
-        const response = await fetch('http://localhost:8080/api/v1/employees', {
+        const response = await fetch('http://localhost:8012/api/v1/employees', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
