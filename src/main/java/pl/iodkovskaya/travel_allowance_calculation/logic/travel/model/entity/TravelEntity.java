@@ -68,6 +68,7 @@ public class TravelEntity {
 
     @Column(nullable = false)
     private BigDecimal totalAmount;
+
     public TravelEntity(String fromCity, String toCity, LocalDate startDate, LocalTime startTime,
                         LocalDate endDate, LocalTime endTime, UserEntity userEntity,
                         BigDecimal advancePayment, BigDecimal dailyAllowance, Integer numberOfBreakfasts,
@@ -84,5 +85,13 @@ public class TravelEntity {
         this.dietEntity = new DietEntity(this, dailyAllowance, numberOfBreakfasts, numberOfLunches, numberOfDinners);
         this.overnightStayEntity = new OvernightStayEntity(this, inputQuantityOfOvernightStayWithoutInvoice,
                 inputQuantityOfOvernightStayWithInvoice, amountOfTotalOvernightsStayWithInvoice);
+    }
+
+    public void setUserEntity(UserEntity employeeByPesel) {
+        this.userEntity = employeeByPesel;
+    }
+
+    public void setTotalAmount(BigDecimal totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }

@@ -51,4 +51,20 @@ public class OvernightStayEntity {
         this.amountOfTotalOvernightsStayWithInvoice = amountOfTotalOvernightsStayWithInvoice;
         this.totalInputQuantityOfOvernightStay = inputQuantityOfOvernightStayWithInvoice + inputQuantityOfOvernightStayWithoutInvoice;
     }
+
+    public void setQuantityOfOvernightStay(Integer quantityOfOvernightStay) {
+        this.quantityOfOvernightStay = quantityOfOvernightStay;
+    }
+
+    public void setTotalInputQuantityOfOvernightStay(Integer totalInputQuantityOfOvernightStay) {
+        this.totalInputQuantityOfOvernightStay = totalInputQuantityOfOvernightStay;
+    }
+
+    public void setAmountOfTotalOvernightsStayWithoutInvoice(BigDecimal amountOfTotalOvernightsStayWithoutInvoice) {
+        this.amountOfTotalOvernightsStayWithoutInvoice = amountOfTotalOvernightsStayWithoutInvoice;
+    }
+
+    public void setOvernightStayAmount(BigDecimal overnightStayAmount) {
+        this.overnightStayAmount = overnightStayAmount;
+    }
 }

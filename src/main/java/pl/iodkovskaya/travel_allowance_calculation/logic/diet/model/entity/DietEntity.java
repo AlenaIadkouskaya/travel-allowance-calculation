@@ -48,4 +48,12 @@ public class DietEntity {
         this.numberOfLunches = numberOfLunches;
         this.numberOfDinners = numberOfDinners;
     }
+
+    public void setDietAmount(BigDecimal dietAmount) {
+        this.dietAmount = dietAmount;
+    }
+
+    public void setFoodAmount(BigDecimal foodAmount) {
+        this.foodAmount = foodAmount;
+    }
 }
