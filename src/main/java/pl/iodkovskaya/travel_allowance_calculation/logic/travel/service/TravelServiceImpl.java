@@ -59,7 +59,7 @@ public class TravelServiceImpl implements TravelService {
         return travelMapper.toResponseDto(travelEntity);
     }
 
-    private BigDecimal calculateTotalAmount(TravelRequestDto travelRequestDto) {
+    private BigDecimal calculateTotalAmount(final TravelRequestDto travelRequestDto) {
         BigDecimal advancePayment = travelRequestDto.getAdvancePayment();
         BigDecimal dietAmount = dietService.calculateDiet(travelRequestDto);
         BigDecimal overnightStayAmount = overnightStayService.calculateOvernightStay(travelRequestDto);

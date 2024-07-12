@@ -72,7 +72,8 @@ public class TravelEntity {
                         LocalDate endDate, LocalTime endTime, UserEntity userEntity,
                         BigDecimal advancePayment, BigDecimal dailyAllowance, Integer numberOfBreakfasts,
                         Integer numberOfLunches, Integer numberOfDinners, Integer inputQuantityOfOvernightStayWithoutInvoice,
-                        Integer inputQuantityOfOvernightStayWithInvoice, BigDecimal amountOfTotalOvernightsStayWithInvoice) {
+                        Integer inputQuantityOfOvernightStayWithInvoice, BigDecimal amountOfTotalOvernightsStayWithInvoice,
+                        boolean isAllowedMoreHigherPayment) {
         this.userEntity = userEntity;
         this.fromCity = fromCity;
         this.toCity = toCity;
@@ -83,7 +84,7 @@ public class TravelEntity {
         this.advancePayment = advancePayment;
         this.dietEntity = new DietEntity(this, dailyAllowance, numberOfBreakfasts, numberOfLunches, numberOfDinners);
         this.overnightStayEntity = new OvernightStayEntity(this, inputQuantityOfOvernightStayWithoutInvoice,
-                inputQuantityOfOvernightStayWithInvoice, amountOfTotalOvernightsStayWithInvoice);
+                inputQuantityOfOvernightStayWithInvoice, amountOfTotalOvernightsStayWithInvoice, isAllowedMoreHigherPayment);
     }
 
     public void updateUserEntity(UserEntity employeeByPesel) {

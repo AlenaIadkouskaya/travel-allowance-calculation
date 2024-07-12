@@ -15,7 +15,7 @@ import java.time.LocalTime;
 @Service
 public class OvernightStayServiceImpl implements OvernightStayService {
     @Override
-    public BigDecimal calculateOvernightStay(TravelRequestDto travelRequestDto) {
+    public BigDecimal calculateOvernightStay(final TravelRequestDto travelRequestDto) {
         BigDecimal amountOfOvernightStayWithoutInvoice = calculateAmountOfOvernightStayWithoutInvoice(travelRequestDto);
         BigDecimal amountOfOvernightStayWithInvoice = calculateAmountOfOvernightStayWithInvoice(travelRequestDto);
         return amountOfOvernightStayWithInvoice.add(amountOfOvernightStayWithoutInvoice);
@@ -48,7 +48,7 @@ public class OvernightStayServiceImpl implements OvernightStayService {
         DietDto dietDto = travelRequestDto.getDietDto();
         BigDecimal dailyAllowance = dietDto.getDailyAllowance();
         BigDecimal amountOfTotalOvernightsStayWithInvoice = overnightStayDto.getAmountOfTotalOvernightsStayWithInvoice();
-        if (!travelRequestDto.isAllowedMoreHigherPayment()) {
+        if (!travelRequestDto.getOvernightStayDto().isAllowedMoreHigherPayment()) {
             BigDecimal maxAmountForOneNightWithInvoice = dailyAllowance.multiply(BigDecimal.valueOf(20));
             if (amountOfTotalOvernightsStayWithInvoice.compareTo(maxAmountForOneNightWithInvoice) > 0) {
                 throw new TravelException("Total amount is more, then maximum allowable amount!");

@@ -52,5 +52,4 @@ public class TravelRequestDto {
     @NotNull(message = "OvernightStayDto cannot be null")
     private OvernightStayDto overnightStayDto;
 
-    private boolean isAllowedMoreHigherPayment;
 }

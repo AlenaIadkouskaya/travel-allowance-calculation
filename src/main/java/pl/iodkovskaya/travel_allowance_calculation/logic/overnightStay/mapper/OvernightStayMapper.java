@@ -8,10 +8,10 @@ import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.entity.Tra
 
 @Component
 public class OvernightStayMapper {
-    public OvernightStayEntity toEntity(OvernightStayDto requestDto, TravelEntity travelEntity) {
-        return new OvernightStayEntity(travelEntity, requestDto.getInputQuantityOfOvernightStayWithoutInvoice(),
-                requestDto.getInputQuantityOfOvernightStayWithInvoice(), requestDto.getAmountOfTotalOvernightsStayWithInvoice());
-    }
+//    public OvernightStayEntity toEntity(OvernightStayDto requestDto, TravelEntity travelEntity) {
+//        return new OvernightStayEntity(travelEntity, requestDto.getInputQuantityOfOvernightStayWithoutInvoice(),
+//                requestDto.getInputQuantityOfOvernightStayWithInvoice(), requestDto.getAmountOfTotalOvernightsStayWithInvoice());
+//    }
 
     public OvernightStayResponseDto toResponseDto(OvernightStayEntity entity) {
         return new OvernightStayResponseDto(entity.getId(), entity.getInputQuantityOfOvernightStayWithoutInvoice(),

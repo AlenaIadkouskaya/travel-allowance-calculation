@@ -9,7 +9,7 @@ import pl.iodkovskaya.travel_allowance_calculation.logic.user.service.UserServic
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/api/v1/employees")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private final UserService userService;
 

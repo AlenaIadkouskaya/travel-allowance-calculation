@@ -32,10 +32,8 @@ public class TravelMapper {
         OvernightStayDto overnightStayDto = travelRequestDto.getOvernightStayDto();
         return new TravelEntity(travelRequestDto.getFromCity(), travelRequestDto.getToCity(), travelRequestDto.getStartDate(),
                 travelRequestDto.getStartTime(), travelRequestDto.getEndDate(), travelRequestDto.getEndTime(),
-                userByPesel, travelRequestDto.getAdvancePayment(), travelRequestDto.getDietDto().getDailyAllowance(),
-                travelRequestDto.getDietDto().getNumberOfBreakfasts(), travelRequestDto.getDietDto().getNumberOfLunches(),
-                travelRequestDto.getDietDto().getNumberOfDinners(), travelRequestDto.getOvernightStayDto().getInputQuantityOfOvernightStayWithoutInvoice(),
-                travelRequestDto.getOvernightStayDto().getInputQuantityOfOvernightStayWithInvoice(),
-                travelRequestDto.getOvernightStayDto().getAmountOfTotalOvernightsStayWithInvoice());
+                userByPesel, travelRequestDto.getAdvancePayment(), dietDto.getDailyAllowance(), dietDto.getNumberOfBreakfasts(), dietDto.getNumberOfLunches(), dietDto.getNumberOfDinners(), overnightStayDto.getInputQuantityOfOvernightStayWithoutInvoice(),
+                overnightStayDto.getInputQuantityOfOvernightStayWithInvoice(), overnightStayDto.getAmountOfTotalOvernightsStayWithInvoice(),
+                overnightStayDto.isAllowedMoreHigherPayment());
     }
 }

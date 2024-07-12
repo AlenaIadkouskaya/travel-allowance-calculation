@@ -26,4 +26,6 @@ public class OvernightStayDto {
 
     @NotNull(message = "overnightStayWithInvoice cannot be null")
     private BigDecimal amountOfTotalOvernightsStayWithInvoice;
+
+    private boolean isAllowedMoreHigherPayment;
 }
