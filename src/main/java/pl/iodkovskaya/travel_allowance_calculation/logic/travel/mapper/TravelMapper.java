@@ -3,7 +3,9 @@ package pl.iodkovskaya.travel_allowance_calculation.logic.travel.mapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.iodkovskaya.travel_allowance_calculation.logic.diet.mapper.DietMapper;
+import pl.iodkovskaya.travel_allowance_calculation.logic.diet.model.dto.DietDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.mapper.OvernightStayMapper;
+import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.model.dto.OvernightStayDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.dto.TravelRequestDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.dto.TravelResponseDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.entity.TravelEntity;
@@ -26,6 +28,8 @@ public class TravelMapper {
 
     public TravelEntity toEntity(TravelRequestDto travelRequestDto) {
         UserEntity userByPesel = userReaderService.findUserByPesel(travelRequestDto.getPesel());
+        DietDto dietDto = travelRequestDto.getDietDto();
+        OvernightStayDto overnightStayDto = travelRequestDto.getOvernightStayDto();
         return new TravelEntity(travelRequestDto.getFromCity(), travelRequestDto.getToCity(), travelRequestDto.getStartDate(),
                 travelRequestDto.getStartTime(), travelRequestDto.getEndDate(), travelRequestDto.getEndTime(),
                 userByPesel, travelRequestDto.getAdvancePayment(), travelRequestDto.getDietDto().getDailyAllowance(),

@@ -9,7 +9,6 @@ import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.entity.Tra
 import java.math.BigDecimal;
 
 @Getter
-//@Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "diet")
@@ -49,11 +48,11 @@ public class DietEntity {
         this.numberOfDinners = numberOfDinners;
     }
 
-    public void setDietAmount(BigDecimal dietAmount) {
+    public void updateDietAmount(BigDecimal dietAmount) {
         this.dietAmount = dietAmount;
     }
 
-    public void setFoodAmount(BigDecimal foodAmount) {
+    public void updateFoodAmount(BigDecimal foodAmount) {
         this.foodAmount = foodAmount;
     }
 }

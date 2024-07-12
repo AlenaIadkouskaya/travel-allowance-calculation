@@ -9,7 +9,6 @@ import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.entity.Tra
 import java.math.BigDecimal;
 
 @Getter
-//@Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "overnight_stay")
@@ -52,19 +51,19 @@ public class OvernightStayEntity {
         this.totalInputQuantityOfOvernightStay = inputQuantityOfOvernightStayWithInvoice + inputQuantityOfOvernightStayWithoutInvoice;
     }
 
-    public void setQuantityOfOvernightStay(Integer quantityOfOvernightStay) {
+    public void updateQuantityOfOvernightStay(Integer quantityOfOvernightStay) {
         this.quantityOfOvernightStay = quantityOfOvernightStay;
     }
 
-    public void setTotalInputQuantityOfOvernightStay(Integer totalInputQuantityOfOvernightStay) {
+    public void updateTotalInputQuantityOfOvernightStay(Integer totalInputQuantityOfOvernightStay) {
         this.totalInputQuantityOfOvernightStay = totalInputQuantityOfOvernightStay;
     }
 
-    public void setAmountOfTotalOvernightsStayWithoutInvoice(BigDecimal amountOfTotalOvernightsStayWithoutInvoice) {
+    public void updateAmountOfTotalOvernightsStayWithoutInvoice(BigDecimal amountOfTotalOvernightsStayWithoutInvoice) {
         this.amountOfTotalOvernightsStayWithoutInvoice = amountOfTotalOvernightsStayWithoutInvoice;
     }
 
-    public void setOvernightStayAmount(BigDecimal overnightStayAmount) {
+    public void updateOvernightStayAmount(BigDecimal overnightStayAmount) {
         this.overnightStayAmount = overnightStayAmount;
     }
 }

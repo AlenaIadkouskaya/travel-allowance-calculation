@@ -17,7 +17,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
-//@Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity(name = "travel")
 public class TravelEntity {
@@ -87,11 +86,11 @@ public class TravelEntity {
                 inputQuantityOfOvernightStayWithInvoice, amountOfTotalOvernightsStayWithInvoice);
     }
 
-    public void setUserEntity(UserEntity employeeByPesel) {
+    public void updateUserEntity(UserEntity employeeByPesel) {
         this.userEntity = employeeByPesel;
     }
 
-    public void setTotalAmount(BigDecimal totalAmount) {
+    public void updateTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
     }
 }

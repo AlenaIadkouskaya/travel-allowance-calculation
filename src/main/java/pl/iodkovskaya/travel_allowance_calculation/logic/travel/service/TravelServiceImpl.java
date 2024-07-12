@@ -38,24 +38,22 @@ public class TravelServiceImpl implements TravelService {
         BigDecimal dietAmount = dietService.calculateDiet(travelRequestDto);
         BigDecimal overnightStayAmount = overnightStayService.calculateOvernightStay(travelRequestDto);
         BigDecimal amountOfTotalOvernightsStayWithoutInvoice = overnightStayService.calculateAmountOfOvernightStayWithoutInvoice(travelRequestDto);
-        //BigDecimal amountOfTotalOvernightsStayWithInvoice = overnightStayService.calculateAmountOfOvernightStayWithInvoice(travelRequestDto);
         BigDecimal totalAmount = calculateTotalAmount(travelRequestDto);
         UserEntity userByPesel = userReaderService.findUserByPesel(travelRequestDto.getPesel());
 
         TravelEntity travelEntity = travelMapper.toEntity(travelRequestDto);
-        travelEntity.setUserEntity(userByPesel);
-        travelEntity.setTotalAmount(totalAmount);
+        travelEntity.updateUserEntity(userByPesel);
+        travelEntity.updateTotalAmount(totalAmount);
 
         DietEntity dietEntity = travelEntity.getDietEntity();
-        dietEntity.setDietAmount(dietAmount);
-        dietEntity.setFoodAmount(dietService.calculateFoodAmount(travelRequestDto));
+        dietEntity.updateDietAmount(dietAmount);
+        dietEntity.updateFoodAmount(dietService.calculateFoodAmount(travelRequestDto));
 
         OvernightStayEntity overnightStayEntity = travelEntity.getOvernightStayEntity();
-        overnightStayEntity.setQuantityOfOvernightStay(overnightStayService.calculateQuantityOfOvernightStay(travelRequestDto));
-        overnightStayEntity.setTotalInputQuantityOfOvernightStay(overnightStayService.calculateTotalInputQuantityOfOvernightStay(travelRequestDto));
-        overnightStayEntity.setAmountOfTotalOvernightsStayWithoutInvoice(amountOfTotalOvernightsStayWithoutInvoice);
-        //overnightStayEntity.setAmountOfTotalOvernightsStayWithInvoice(amountOfTotalOvernightsStayWithInvoice);
-        overnightStayEntity.setOvernightStayAmount(overnightStayAmount);
+        overnightStayEntity.updateQuantityOfOvernightStay(overnightStayService.calculateQuantityOfOvernightStay(travelRequestDto));
+        overnightStayEntity.updateTotalInputQuantityOfOvernightStay(overnightStayService.calculateTotalInputQuantityOfOvernightStay(travelRequestDto));
+        overnightStayEntity.updateAmountOfTotalOvernightsStayWithoutInvoice(amountOfTotalOvernightsStayWithoutInvoice);
+        overnightStayEntity.updateOvernightStayAmount(overnightStayAmount);
 
         travelRepository.save(travelEntity);
         return travelMapper.toResponseDto(travelEntity);
