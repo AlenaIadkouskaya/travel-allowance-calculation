@@ -140,8 +140,6 @@ components:
           $ref: '#/components/schemas/DietDto'
         overnightStayDto:
           $ref: '#/components/schemas/OvernightStayDto'
-        isAllowedMoreHigherPayment:
-          type: boolean
       required:
         - pesel
         - fromCity
@@ -198,11 +196,15 @@ components:
           type: number
           format: double
           example: 100.00
+        isAllowedMoreHigherPayment:
+          type: boolean
+          example: true
       required:
         - inputQuantityOfOvernightStayWithoutInvoice
         - amountOfTotalOvernightsStayWithoutInvoice
         - inputQuantityOfOvernightStayWithInvoice
         - amountOfTotalOvernightsStayWithInvoice
+        - isAllowedMoreHigherPayment
 
     DietResponseDto:
       type: object
