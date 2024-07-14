@@ -6,7 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import pl.iodkovskaya.travel_allowance_calculation.logic.diet.exception.DietException;
+import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.exception.OvernightStayException;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.exception.TravelException;
+import pl.iodkovskaya.travel_allowance_calculation.logic.user.exception.UserException;
 
 import java.time.format.DateTimeParseException;
 import java.util.stream.Collectors;
@@ -35,5 +38,22 @@ public class TravelControllerAdvice {
                     .body("Invalid date and time format: " + cause.getMessage());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Malformed JSON request");
+    }
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity handleEventException(UserException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Error: " + e.getMessage());
+    }
+
+    @ExceptionHandler(DietException.class)
+    public ResponseEntity handleEventException(DietException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Error: " + e.getMessage());
+    }
+
+    @ExceptionHandler(OvernightStayException.class)
+    public ResponseEntity handleEventException(OvernightStayException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("Error: " + e.getMessage());
     }
 }

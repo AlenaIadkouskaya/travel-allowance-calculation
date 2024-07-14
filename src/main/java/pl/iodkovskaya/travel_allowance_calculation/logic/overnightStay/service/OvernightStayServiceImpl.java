@@ -2,11 +2,13 @@ package pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.service;
 
 import org.springframework.stereotype.Service;
 import pl.iodkovskaya.travel_allowance_calculation.logic.diet.model.dto.DietDto;
+import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.exception.OvernightStayException;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.model.dto.OvernightStayDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.exception.TravelException;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.dto.TravelRequestDto;
 
 import java.math.BigDecimal;
+import java.nio.channels.OverlappingFileLockException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -51,7 +53,7 @@ public class OvernightStayServiceImpl implements OvernightStayService {
         if (!travelRequestDto.getOvernightStayDto().isAllowedMoreHigherPayment()) {
             BigDecimal maxAmountForOneNightWithInvoice = dailyAllowance.multiply(BigDecimal.valueOf(20));
             if (amountOfTotalOvernightsStayWithInvoice.compareTo(maxAmountForOneNightWithInvoice) > 0) {
-                throw new TravelException("Total amount is more, then maximum allowable amount!");
+                throw new OvernightStayException("Total amount is more, then maximum allowable amount!");
             }
         }
 
@@ -105,7 +107,7 @@ public class OvernightStayServiceImpl implements OvernightStayService {
         if (overnightStayDto.getInputQuantityOfOvernightStayWithInvoice() > quantityOfOvernightStay ||
                 inputQuantityOfOvernightStayWithoutInvoice > quantityOfOvernightStay ||
                 calculateTotalInputQuantityOfOvernightStay(travelRequestDto) > quantityOfOvernightStay) {
-            throw new TravelException("Quantity numbers of nights more than nights in travel");
+            throw new OvernightStayException("Quantity numbers of nights more than nights in travel");
         }
     }
 }
