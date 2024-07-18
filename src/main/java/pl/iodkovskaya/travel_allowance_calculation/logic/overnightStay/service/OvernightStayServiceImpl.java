@@ -107,7 +107,7 @@ public class OvernightStayServiceImpl implements OvernightStayService {
         if (overnightStayDto.getInputQuantityOfOvernightStayWithInvoice() > quantityOfOvernightStay ||
                 inputQuantityOfOvernightStayWithoutInvoice > quantityOfOvernightStay ||
                 calculateTotalInputQuantityOfOvernightStay(travelRequestDto) > quantityOfOvernightStay) {
-            throw new OvernightStayException("Quantity numbers of nights more than nights in travel");
+            throw new OvernightStayException("The number of nights entered for overnight stay is greater than the number of nights on the trip");
         }
     }
 }

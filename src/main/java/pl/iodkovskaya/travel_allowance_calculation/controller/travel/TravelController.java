@@ -26,21 +26,12 @@ public class TravelController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public TravelResponseDto calculateTravelExpenses(@RequestBody @Valid TravelRequestDto requestDto) {
+    public TravelResponseDto calculateTravelExpenses(@RequestBody TravelRequestDto requestDto) {
         return travelService.calculateTravelExpenses(requestDto);
     }
-//    @PostMapping("/print/{id}")
-//    public ResponseEntity<String> generatePdf(@PathVariable Long id) {
-//        try {
-//            pdfDocumentService.generatePdfDocument(id);
-//            return ResponseEntity.ok("PDF document generated successfully.");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error generating PDF document: " + e.getMessage());
-//        }
-//    }
 
     @PostMapping("/print/{id}")
-    public ResponseEntity<Void> print2(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> print(@PathVariable("id") Long id) {
         try {
             pdfDocumentService.generatePdfDocument(id);
         } catch (IOException e) {

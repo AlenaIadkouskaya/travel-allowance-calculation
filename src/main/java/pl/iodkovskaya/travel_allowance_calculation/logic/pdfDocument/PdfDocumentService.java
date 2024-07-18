@@ -49,8 +49,8 @@ public class PdfDocumentService {
                 entry("advancePayment", String.valueOf(travelEntity.getAdvancePayment()))
         );
 
-        String templatePath = "src/main/resources/print/template.pdf";
-        String outputPath = "src/main/resources/print/changed_template.pdf";
+        String templatePath = "src/main/resources/templates/print/template.pdf";
+        String outputPath = "src/main/resources/templates/print/changed_template.pdf";
 
         fillTemplate(templatePath, outputPath, replacements);
     }

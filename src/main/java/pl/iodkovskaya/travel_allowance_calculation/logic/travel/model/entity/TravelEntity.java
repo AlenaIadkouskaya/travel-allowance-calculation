@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.iodkovskaya.travel_allowance_calculation.logic.diet.model.entity.DietEntity;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.model.entity.OvernightStayEntity;
+import pl.iodkovskaya.travel_allowance_calculation.logic.transport.model.entity.TransportCostEntity;
 import pl.iodkovskaya.travel_allowance_calculation.logic.user.model.entity.UserEntity;
 
 import java.math.BigDecimal;
@@ -65,6 +66,9 @@ public class TravelEntity {
     @OneToOne(mappedBy = "travelEntity", cascade = CascadeType.ALL)
     private OvernightStayEntity overnightStayEntity;
 
+    @OneToOne(mappedBy = "travelEntity", cascade = CascadeType.ALL)
+    private TransportCostEntity transportCostEntity;
+
     @Column(nullable = false)
     private BigDecimal totalAmount;
 
@@ -73,7 +77,10 @@ public class TravelEntity {
                         BigDecimal advancePayment, BigDecimal dailyAllowance, Integer numberOfBreakfasts,
                         Integer numberOfLunches, Integer numberOfDinners, Integer inputQuantityOfOvernightStayWithoutInvoice,
                         Integer inputQuantityOfOvernightStayWithInvoice, BigDecimal amountOfTotalOvernightsStayWithInvoice,
-                        boolean isAllowedMoreHigherPayment) {
+                        Boolean isAllowedMoreHigherPayment, Integer inputtedDaysNumberForTransportCost,
+                        BigDecimal undocumentedLocalTransportCost, BigDecimal documentedLocalTransportCost,
+                        String meansOfTransport, BigDecimal costOfTravelByPublicTransport, Long kilometersByCarEngineUpTo900cc,
+                        Long kilometersByCarEngineAbove900cc, Long kilometersByMotorcycle, Long kilometersByMoped) {
         this.userEntity = userEntity;
         this.fromCity = fromCity;
         this.toCity = toCity;
@@ -85,13 +92,15 @@ public class TravelEntity {
         this.dietEntity = new DietEntity(this, dailyAllowance, numberOfBreakfasts, numberOfLunches, numberOfDinners);
         this.overnightStayEntity = new OvernightStayEntity(this, inputQuantityOfOvernightStayWithoutInvoice,
                 inputQuantityOfOvernightStayWithInvoice, amountOfTotalOvernightsStayWithInvoice, isAllowedMoreHigherPayment);
-    }
-
-    public void updateUserEntity(UserEntity employeeByPesel) {
-        this.userEntity = employeeByPesel;
+        this.transportCostEntity = new TransportCostEntity(this, inputtedDaysNumberForTransportCost, undocumentedLocalTransportCost,
+                documentedLocalTransportCost, meansOfTransport, costOfTravelByPublicTransport, kilometersByCarEngineUpTo900cc,
+                kilometersByCarEngineAbove900cc, kilometersByMotorcycle, kilometersByMoped);
     }
 
     public void updateTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
+    }
+    public void updateUser(UserEntity userByPesel) {
+        this.userEntity = userByPesel;
     }
 }

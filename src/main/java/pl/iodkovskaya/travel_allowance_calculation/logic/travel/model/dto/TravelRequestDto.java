@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.iodkovskaya.travel_allowance_calculation.logic.diet.model.dto.DietDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.model.dto.OvernightStayDto;
+import pl.iodkovskaya.travel_allowance_calculation.logic.transport.model.dto.TransportCostDto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -51,5 +52,8 @@ public class TravelRequestDto {
 
     @NotNull(message = "OvernightStayDto cannot be null")
     private OvernightStayDto overnightStayDto;
+
+    @NotNull(message = "Transport cannot be null")
+    private TransportCostDto transportCostDto;
 
 }
