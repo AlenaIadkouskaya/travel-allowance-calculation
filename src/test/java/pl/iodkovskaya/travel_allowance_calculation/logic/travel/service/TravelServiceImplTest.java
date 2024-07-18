@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import pl.iodkovskaya.travel_allowance_calculation.logic.diet.model.dto.DietDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.exception.OvernightStayException;
 import pl.iodkovskaya.travel_allowance_calculation.logic.overnightStay.model.dto.OvernightStayDto;
+import pl.iodkovskaya.travel_allowance_calculation.logic.transport.model.dto.TransportCostDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.dto.TravelRequestDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.model.dto.TravelResponseDto;
 import pl.iodkovskaya.travel_allowance_calculation.logic.travel.repository.TravelRepository;
@@ -46,6 +47,7 @@ class TravelServiceImplTest {
     private final BigDecimal MAX_AMOUNT_FOR_ONE_NIGHT_WITH_INVOICE = DAILY_ALLOWANCE.multiply(BigDecimal.valueOf(20));
     private final BigDecimal ADVANCE_PAYMENT = BigDecimal.valueOf(50);
     private final Boolean IS_INVOICE_AMOUNT_GREATER_ALLOWED = false;
+    private final BigDecimal OTHER_EXPENSES_ZERO = new BigDecimal(0);
 
 
     @Autowired
@@ -91,8 +93,11 @@ class TravelServiceImplTest {
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
 
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
+
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -122,9 +127,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -154,9 +160,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -186,9 +193,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -218,9 +226,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -251,9 +260,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, startTime, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -283,9 +293,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -315,9 +326,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -348,9 +360,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -381,9 +394,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -413,9 +427,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -445,9 +460,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -477,9 +493,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -510,9 +527,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -543,9 +561,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         TravelResponseDto travelResponseDto = travelService.calculateTravelExpenses(travelRequestDto);
@@ -576,9 +595,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, START_TIME, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         Executable e = () -> travelService.calculateTravelExpenses(travelRequestDto);
@@ -610,9 +630,10 @@ class TravelServiceImplTest {
 
         OvernightStayDto overnightStayDto = new OvernightStayDto(inputQuantityOfOvernightStayWithoutInvoice, inputQuantityOfOvernightStayWithInvoice,
                 amountOfTotalOvernightsStayWithInvoice, IS_INVOICE_AMOUNT_GREATER_ALLOWED);
-
+        TransportCostDto transportCostDto = new TransportCostDto(0, BigDecimal.ZERO,
+                "without", BigDecimal.ZERO, 0L, 0L, 0L, 0L);
         TravelRequestDto travelRequestDto = new TravelRequestDto(PESEL, CITY_FROM, CITY_TO, START_DAY, startTime, endDay,
-                endTime, ADVANCE_PAYMENT, dietDto, overnightStayDto);
+                endTime, ADVANCE_PAYMENT, OTHER_EXPENSES_ZERO, dietDto, overnightStayDto, transportCostDto);
 
         //WHEN
         Executable e = () -> travelService.calculateTravelExpenses(travelRequestDto);

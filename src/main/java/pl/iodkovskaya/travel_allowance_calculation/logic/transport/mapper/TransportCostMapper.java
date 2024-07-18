@@ -7,7 +7,7 @@ import pl.iodkovskaya.travel_allowance_calculation.logic.transport.model.entity.
 @Component
 public class TransportCostMapper {
     public TransportCostResponseDto toResponseDto(TransportCostEntity entity) {
-        return new TransportCostResponseDto(entity.getId(), entity.getInputtedDaysNumberForTransportCost(),
+        return new TransportCostResponseDto(entity.getId(), entity.getInputtedDaysNumberForUndocumentedTransportCost(),
                 entity.getUndocumentedLocalTransportCost(), entity.getDocumentedLocalTransportCost(), entity.getMeansOfTransport(),
                 entity.getCostOfTravelByPublicTransport(), entity.getCostOfTravelByOwnTransport(), entity.getTransportCostAmount());
     }

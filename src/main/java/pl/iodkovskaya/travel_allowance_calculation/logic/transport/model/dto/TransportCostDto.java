@@ -15,19 +15,17 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 public class TransportCostDto {
-    @NotNull(message = "inputtedDaysNumberForTransportCost cannot be null")
-    @Column(nullable = false)
+    @NotNull(message = "Inputted days number for undocumented local transport cannot be null")
     private Integer inputtedDaysNumberForUndocumentedLocalTransportCost;
 
-    @Column(nullable = false)
-    private BigDecimal undocumentedLocalTransportCost;
-
-    @Column(nullable = false)
+    @NotNull(message = "Documented local transport cost cannot be null")
     private BigDecimal documentedLocalTransportCost;
 
-    @NotBlank(message = "meansOfTransport cannot be blank")
-    @Column(nullable = false)
+    @NotBlank(message = "Means of transport cannot be blank")
     private String meansOfTransport;
+
+    @NotNull(message = "Cost of travel by public transport cannot be null")
+    private BigDecimal costOfTravelByPublicTransport;
 
     @NotNull(message = "Kilometers by car engine up to 900cc cannot be null")
     @Min(value = 0, message = "Kilometers by car engine up to 900cc cannot be negative")
@@ -45,6 +43,4 @@ public class TransportCostDto {
     @Min(value = 0, message = "Kilometers by moped cannot be negative")
     private Long kilometersByMoped;
 
-    @Column(nullable = false)
-    private BigDecimal costOfTravelByPublicTransport;
 }

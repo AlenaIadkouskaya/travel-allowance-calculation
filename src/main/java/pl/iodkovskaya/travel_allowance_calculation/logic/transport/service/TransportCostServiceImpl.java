@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Service
-public class TransportCostImpl implements TransportCostService{
+public class TransportCostServiceImpl implements TransportCostService{
     private final BigDecimal COST_BY_CAR_ENGINE_UP_TO_900_CC = BigDecimal.valueOf(0.89);
     private final BigDecimal COST_BY_CAR_ENGINE_ABOVE_TO_900_CC = BigDecimal.valueOf(1.15);
     private final BigDecimal COST_BY_MOTORCYCLE = BigDecimal.valueOf(0.69);
@@ -37,7 +37,7 @@ public class TransportCostImpl implements TransportCostService{
         if (inputtedDaysNumberForUndocumentedLocalTransportCost > daysInTravel) {
             throw new TransportException("The number of days entered for undocumented Local Transport Costs is greater than the number of days on the trip");
         }
-        return dailyUndocumentedLocalTransportCost.multiply(BigDecimal.valueOf(daysInTravel));
+        return dailyUndocumentedLocalTransportCost.multiply(BigDecimal.valueOf(inputtedDaysNumberForUndocumentedLocalTransportCost));
     }
 
     @Override
